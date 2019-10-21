@@ -30,7 +30,7 @@ def findContent(soup): #小說內容
 def multiTa(chapL,title,temp): #Multiprocess func
 	url='https:'+chapL[temp]
 	resp=fetch(url)
-	soup = BeautifulSoup(resp, 'html.parser')
+	soup = BeautifulSoup(resp, 'lxml')
 	fileA=open(f"temp/temp{temp+1}.txt","w",encoding="utf-8")
 	
 	fileA.write(findChapN(soup,title)+'\n\n\n\n')
@@ -56,10 +56,10 @@ if __name__ == '__main__':
 		os.mkdir('src')
 	if(not os.path.exists('temp')):	
 		os.mkdir('temp')
-	keyW='ujbc0' #替換成要下載小說 https://czbooks.net/n/u55bm 連結最後這一段
+	keyW='ul6pl' #替換成要下載小說 https://czbooks.net/n/u55bm 連結最後這一段
 	url=f'https://czbooks.net/n/{keyW}'
-	resp=fetch(url)
-	soup = BeautifulSoup(resp, 'html.parser')
+
+	soup = BeautifulSoup(fetch(url), 'lxml')
 	
 	chapL=getChapList(soup)
 	title=findTitle(soup)
