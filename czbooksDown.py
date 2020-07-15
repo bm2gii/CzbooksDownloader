@@ -6,6 +6,7 @@ import multiprocessing
 from multiprocessing import Pool
 import time
 import re
+import sys
 
 def fetch(url):
 	headers={'User-Agent': "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36"}
@@ -57,6 +58,9 @@ if __name__ == '__main__':
 	if(not os.path.exists('temp')):	
 		os.mkdir('temp')
 	keyW='ul6pl' #替換成要下載小說 https://czbooks.net/n/u55bm 連結最後這一段
+	if (len(sys.argv)>1):
+		keyW=sys.argv[1]
+		
 	url=f'https://czbooks.net/n/{keyW}'
 
 	soup = BeautifulSoup(fetch(url), 'lxml')
