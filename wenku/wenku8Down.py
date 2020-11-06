@@ -78,7 +78,7 @@ def mergeN(title,count): #暫存檔合體
 		fileA=open(f"temp/temp{i}.txt","r",encoding="utf-8")
 		fileT.write(fileA.read()+'\n\n\n\n\n')
 		fileA.close()
-		#os.remove(f'temp/temp{i}.txt')
+		os.remove(f'temp/temp{i}.txt')
 	
 	fileT.close()
 	
