@@ -12,3 +12,6 @@ twfanti:<br>
 繁體小說網<br>
 www.twfanti.com
 
+wenku:<br>
+輕小說文庫<br>
+http://www.wenku8.net/modules/article/articlelist.php
