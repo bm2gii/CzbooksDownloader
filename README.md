@@ -8,3 +8,6 @@ pip3 install lxml <br>
 <br>
 export PYTHONIOENCODING=utf-8 <br>
 
+twfanti:
+繁體小說網<br>
+www.twfanti.com
