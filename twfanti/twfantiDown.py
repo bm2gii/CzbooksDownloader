@@ -10,7 +10,9 @@ from multiprocessing import Pool
 import time
 import re
 import sys, getopt
+import codecs
 
+sys.stdout = codecs.getwriter("utf-8")(sys.stdout.detach())
 
 def fetch(url):
 	headers={'User-Agent': "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36"}
@@ -84,10 +86,22 @@ def multiTa(chapL,title,temp): #Multiprocess func
 		url = chapL
 	else:
 		url=chapL[temp]
-	print(temp, url)
+	print(temp, url,flush=True)
 	ret = temp + 1
 	r = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-	resp=urllib2.urlopen(r)
+	try:
+		resp=urllib2.urlopen(r)
+		time.sleep(2)
+	except Exception as e:
+		print(e)
+		print("wait 5 sec and try again")
+		try:
+			time.sleep(5)
+			resp=urllib2.urlopen(r)
+		except Exception as e:
+			print("get %s again error!" %(url))
+			return ret
+
 	soup = BeautifulSoup(resp, 'lxml')
 	fileA=open(f'temp/temp{temp+1}.txt','w',encoding='utf-8')
 	#print ('.', end='',flush=True)
@@ -132,6 +146,7 @@ if __name__ == '__main__':
 	#print (sys.argv[1])
 	#https://www.wenku8.net/novel/2/2147/index.htm
 	keyW='90HouFengShuiShi' #替換成要下載小說 https://czbooks.net/n/u55bm 連結最後這一段
+	keyW='ChaoWeiLieXi' #替換成要下載小說 https://czbooks.net/n/u55bm 連結最後這一段
 	if (len(sys.argv) >1):
 		if (sys.argv[1] != None):
 			keyW=sys.argv[1]
