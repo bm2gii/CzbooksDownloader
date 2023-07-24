@@ -13,15 +13,40 @@ def fetch(url):
 	resp=requests.get(url,headers=headers).text
 	return resp
 
+#def getChapList(soup): #找出網頁的章節連結
+#	cList=[]
+#	for t in soup.find('ul','nav chapter-list').find_all('a'):
+#		cList.append(t.get('href'))
+#	return cList
+    
 def getChapList(soup): #找出網頁的章節連結
 	cList=[]
-	for t in soup.find('ul','nav chapter-list').find_all('a'):
-		cList.append(t.get('href'))
+	ch = soup.find('ul','nav chapter-list')
+	if (ch == None):
+		return cList
+	for t in ch.find_all('a'):
+		h = t.get('href')
+		url = f'{h}'
+		#print(url)
+		#print(t)
+		cList.append(url)
+	#print (cList)
 	return cList
 
+#def findTitle(soup): #小說名稱
+#	print(soup.find('span','title').text)
+#	return soup.find('span','title').text
+    
 def findTitle(soup): #小說名稱
-	print(soup.find('span','title').text)
-	return soup.find('span','title').text
+	if (soup == None):
+		return "not found!"
+	t =	soup.find('span','title')
+	#print (t)
+	if (t != None):
+		print (t.text)
+		return t.text
+		
+	return t
 	
 def findChapN(soup,title): #章節名稱
 	return(soup.find('div','name').text.replace(title,''))
@@ -53,6 +78,9 @@ def mergeN(title,count): #暫存檔合體
 	fileT.close()
 	
 if __name__ == '__main__':
+
+	# Pyinstaller fix
+	multiprocessing.freeze_support()
 
 	if(not os.path.exists('src')):	
 		os.mkdir('src')
