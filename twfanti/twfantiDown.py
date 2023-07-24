@@ -32,7 +32,8 @@ def getChapList(soup): #找出網頁的章節連結
 		return cList
 	for t in ch.find_all('a'):
 		h = t.get('href')
-		url = f'https://www.twfanti.com{h}'
+		url = f'https://www.azooz.net{h}'
+		#url = f'https://www.twfanti.com{h}'
 		#url = f'{h}'
 		#print(url)
 		#print(t)
@@ -77,7 +78,8 @@ def check_next_page(soup): #find if there is next page
 		#print(n.text)
 		#print (n.text.find('下一頁'))
 		if (0 < n.text.find('下一頁')):
-			url = f'https://www.twfanti.com{h}'
+			#url = f'https://www.twfanti.com{h}'
+			url = f'https://www.azooz.net{h}'
 			return url
 
 	return None
@@ -146,15 +148,17 @@ if __name__ == '__main__':
 	#print (sys.argv[1])
 	#https://www.wenku8.net/novel/2/2147/index.htm
 	keyW='90HouFengShuiShi' #替換成要下載小說 https://czbooks.net/n/u55bm 連結最後這一段
-	keyW='ChaoWeiLieXi' #替換成要下載小說 https://czbooks.net/n/u55bm 連結最後這一段
+	keyW='WanLiaoA_NvDiDeRuanFanZhangFuJuRanWuDiLiao40198' #替換成要下載小說 https://czbooks.net/n/u55bm 連結最後這一段
 	if (len(sys.argv) >1):
 		if (sys.argv[1] != None):
 			keyW=sys.argv[1]
 	else:
 		print ("usage: %s id \nex. %s %s" %(sys.argv[0], sys.argv[0], keyW))
-		print ("https://www.twfanti.com/ downloader")
+		#print ("https://www.twfanti.com/ downloader")
+		print ("https://www.azooz.net/ downloader")
 	#print (len(sys.argv))	
-	url=f'https://www.twfanti.com/book/{keyW}.html'
+	#url=f'https://www.twfanti.com/book/{keyW}.html'
+	url=f'https://www.azooz.net/{keyW}/'
 	print(url)
 	r = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
 	page = urllib2.urlopen(r);

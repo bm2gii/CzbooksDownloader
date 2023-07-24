@@ -20,6 +20,7 @@ def getChapList(soup): #找出網頁的章節連結
 	return cList
 
 def findTitle(soup): #小說名稱
+	print(soup.find('span','title').text)
 	return soup.find('span','title').text
 	
 def findChapN(soup,title): #章節名稱
@@ -62,6 +63,7 @@ if __name__ == '__main__':
 		keyW=sys.argv[1]
 		
 	url=f'https://czbooks.net/n/{keyW}'
+	print(url,flush=True)
 
 	soup = BeautifulSoup(fetch(url), 'lxml')
 	

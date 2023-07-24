@@ -155,7 +155,7 @@ if __name__ == '__main__':
 	#print (sys.argv[1])
 	#https://www.wenku8.net/novel/2/2147/index.htm
 	keyW='90HouFengShuiShi' #替換成要下載小說 https://czbooks.net/n/u55bm 連結最後這一段
-	keyW='ChaoWeiLieXi' #替換成要下載小說 https://czbooks.net/n/u55bm 連結最後這一段
+	keyW='303270' #替換成要下載小說 https://czbooks.net/n/u55bm 連結最後這一段
 	if (len(sys.argv) >1):
 		if (sys.argv[1] != None):
 			keyW=sys.argv[1]
